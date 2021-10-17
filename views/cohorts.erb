@@ -5,5 +5,24 @@
   </head>
   <body>
     <h1>This is the project</h1>
+    <table class="table table-hover">
+      <tr>
+        <th>Cohort</th>
+        <th>Users</th>
+        <th>0-7 Days</th>
+        <th>7-14 Days</th>
+        <th>14-21 Days</th>
+      </tr>
+      <% @cohorts.map do |cohort|  %>
+        <tr>
+          <td><%= cohort[:dates] %><td>
+          <td><%= cohort[:users] %></td>
+          <td><%= "cohort[index]" %></td>
+          <td><%= "cohort[index]" %></td>
+          <td><%= "cohort[index]" %></td>
+        </tr>
+        <%= %>
+      <%end%>
+      </table>
   </body>
 </html>
