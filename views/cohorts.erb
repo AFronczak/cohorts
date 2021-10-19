@@ -1,28 +1,31 @@
 <!doctype html>
 <html>
   <head>
-    <!-- Style and javascript links -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/application.css" />
   </head>
   <body>
-    <h1>This is the project</h1>
-    <table class="table table-hover">
-      <tr>
-        <th>Cohort</th>
-        <th>Users</th>
-        <th>0-7 Days</th>
-        <th>7-14 Days</th>
-        <th>14-21 Days</th>
-      </tr>
-      <% @cohorts.map do |cohort|  %>
+    <h1>Cohorts</h1>
+    <table class="content-table">
+      <thead>
         <tr>
-          <td><%= cohort[:dates] %><td>
-          <td><%= cohort[:users] %></td>
-          <td><%= "cohort[index]" %></td>
-          <td><%= "cohort[index]" %></td>
-          <td><%= "cohort[index]" %></td>
+          <th>Cohort</th>
+          <th>Users</th>
+          <th>0-7 Days</th>
+          <th>7-14 Days</th>
+          <th>14-21 Days</th>
         </tr>
-        <%= %>
-      <%end%>
-      </table>
+      </thead>
+      <tbody>
+        <% @cohorts.map do |cohort|  %>
+          <tr>
+            <td><%= cohort[:dates] %></td>
+            <td><%= "#{cohort[:count]} users" %></td>
+            <td><%= cohort[:percent_of_orders] %></td>
+            <td><%= "cohort[index]" %></td>
+            <td><%= "cohort[index]" %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
   </body>
 </html>
