@@ -10,19 +10,32 @@
         <tr>
           <th>Cohort</th>
           <th>Users</th>
-          <th>0-7 Days</th>
-          <th>7-14 Days</th>
-          <th>14-21 Days</th>
+          <% 8.times do |i| %>
+            <th>
+              <% if i.eql?(0) %>
+              0-7
+              <% else %>
+              <%= ((i)*7)%>-<%=((i+1)*7)%>
+              <% end%> days 
+            </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
-        <% @cohorts.map do |cohort|  %>
+        <% @cohorts.each_with_index do |cohort, index|  %>
           <tr>
-            <td><%= cohort[:dates] %></td>
-            <td><%= "#{cohort[:count]} users" %></td>
-            <td><%= cohort[:percent_of_orders] %></td>
-            <td><%= "cohort[index]" %></td>
-            <td><%= "cohort[index]" %></td>
+            <td><%= cohort[1][:dates] %></td>
+            <td><%= "#{cohort[1][:total_users]} users" %></td>
+            <%8.times do |i| %>
+              <td NOWRAP>
+                <% if cohort[1][:count][i].to_f > 0 %>
+                  <%= "#{((cohort[1][:count][i].to_f/total_users.to_f) * 100.00).round(1)}% " rescue nil %> orderers (<%= "#{cohort[1][:count][i]}" %>)<br>
+                  <%= "#{((cohort[1][:first_time][i].to_f/total_users.to_f) * 100.00).round(1)}% " rescue nil %> 1st time (<%= "#{cohort[1][:first_time][i]}" rescue nil %>)
+                <% else %>
+                  --
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <%end%>
       </tbody>
