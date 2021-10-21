@@ -9,10 +9,10 @@
       <label for="cohort_count">Select Number of Cohorts</label>
       <select name="cohort_count">
         <%(1..@cohorts.first[1][:count].length).each do |i| %>
-          <option value="<%= i %>"><%= i %></option>
+          <option <%= "selected" if i == @cohort_count %> value="<%= i %>"><%= i %></option>
         <%end%>
       </select>
-      <input type="submit" value="Submit">
+      <input type="submit" class="submit-button" value="Submit">
     </form>
     <table class="content-table">
       <thead>
